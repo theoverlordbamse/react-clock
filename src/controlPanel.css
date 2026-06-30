@@ -1,0 +1,24 @@
+img {
+    height: 7%;
+    /*filter: invert(100%);*/
+    position: fixed;  right: clamp(8px, 2vw, 24px);  bottom: clamp(8px, 2vh, 24px);
+}
+
+.controlPanel {
+    z-index: 1000;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+
+    border: white solid 5px;
+    border-radius: 10px;
+}
+
+.option {
+    font-weight: 400;
+    font-size: 45%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
