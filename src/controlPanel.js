@@ -1,10 +1,10 @@
 import { useState } from "react";
 import './controlPanel.css'
 
-const ControlPanel = ({onDataChange}) => {
+const ControlPanel = ({onDataChange, data}) => {
 
     const handleChange = (event) => {
-        onDataChange(event.target.checked);
+        onDataChange(event.target.checked ? {...data, backgroundColor: 'white'}: {...data, backgroundColor: 'black'});
     };
 
     const [btnTrigger, setBtnTrigger] = useState(false)
