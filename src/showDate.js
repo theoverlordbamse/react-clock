@@ -1,14 +1,65 @@
 import './showDate.css'
 
 const ShowDate = ({data}) => {
-    const dayNames = {
-        'Danish': ['Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag', 'Søndag', 'Den'],
-        'English': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'The']
-    }
+    
 
-    const monthNames = {
-        'Danish': ['Januar', 'Februar', 'Marts', 'April', 'Maj', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'December']
+    // DA is a abbreviation for definitive article. source: https://en.wikipedia.org/wiki/The
+    // variable names is named after the iso 3166 standard. reference: https://en.wikipedia.org/wiki/ISO_3166-2
+
+const dayNames = {
+    "DK": {
+        "days": [
+            "Mandag",
+            "Tirsdag",
+            "Onsdag",
+            "Torsdag",
+            "Fredag",
+            "Lørdag",
+            "Søndag"
+        ],
+        "months": [
+            "Januar",
+            "Februar",
+            "Marts",
+            "April",
+            "Maj",
+            "Juni",
+            "Juli",
+            "August",
+            "September",
+            "Oktober",
+            "November",
+            "December"
+        ],
+        "DA": "Den"
+    },
+    "GB": {
+        "days": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+        ],
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "DA": "The"
     }
+}
 
     const date = new Date()
 
@@ -16,16 +67,16 @@ const ShowDate = ({data}) => {
         <div className='date'>
             <div className='day'>
                 <p style={{ display: 'inline' }}>
-                    {dayNames.Danish[date.getDay() === 0 ? 6 : date.getDay() -1] + ' '}
+                    {dayNames.DK.days[date.getDay() === 0 ? 6 : date.getDay() -1] + ' '}
                 </p>
                 <p style={{ display: 'inline' }}>
-                    {dayNames.Danish[7] + ' '}
+                    {dayNames.DK.DA + ' '}
                 </p>
                 <p style={{ display: 'inline' }}>
                     {date.getDate() + ' '}
                 </p>
                 <p style={{ display: 'inline' }}>
-                    {monthNames.Danish[date.getMonth() - 1]}
+                    {dayNames.DK.months[date.getMonth() - 1]}
                 </p>
             </div>
         </div>

@@ -7,7 +7,15 @@ const ControlPanel = ({onDataChange, data}) => {
         onDataChange(event.target.checked ? {...data, backgroundColor: 'white'}: {...data, backgroundColor: 'black'});
     };
 
+    // Skal fikse bug hvor man skal trykke på et sprog 2 gange for at den opdaterer
+    const handleLangChange = (event) => {
+        setLanguage(event.target.value)
+        console.log(language)
+        onDataChange({...data, lang: language})
+    }
+
     const [btnTrigger, setBtnTrigger] = useState(false)
+    const [language, setLanguage] = useState(data.lang)
 
     return (<>
     <img onClick={() => {setBtnTrigger(!btnTrigger)}} src="https://www.svgrepo.com/show/532244/gear.svg" alt="Gear icon" style={{filter: btnTrigger ? null : "invert(100%)"}}/>
@@ -25,6 +33,14 @@ const ControlPanel = ({onDataChange, data}) => {
                     toggle clock
                 </h5>
                 <input type="checkbox" />
+            </div>
+            <div className="option language">
+                <h5>
+                    Change language
+                </h5>
+                <select  value={data.lang} onChange={handleLangChange}>
+                    {data.languages.map((item) => (<option key={item}>{item}</option>))}
+                </select>
             </div>
         </div>
         : null
