@@ -3,6 +3,9 @@ import './controlPanel.css'
 
 const ControlPanel = ({onDataChange, data}) => {
 
+
+    const keys = Object.keys(data.dayNames)
+
     const handleChange = (event) => {
         onDataChange(event.target.checked ? {...data, backgroundColor: 'white'}: {...data, backgroundColor: 'black'});
     };
@@ -11,6 +14,7 @@ const ControlPanel = ({onDataChange, data}) => {
     const handleLangChange = (event) => {
         setLanguage(event.target.value)
         console.log(language)
+        console.log(data.dayNames[language].days[0])
         onDataChange({...data, lang: language})
     }
 
@@ -39,7 +43,7 @@ const ControlPanel = ({onDataChange, data}) => {
                     Change language
                 </h5>
                 <select  value={data.lang} onChange={handleLangChange}>
-                    {data.languages.map((item) => (<option key={item}>{item}</option>))}
+                    {keys.map((item) => (<option key={item}>{item}</option>))}
                 </select>
             </div>
         </div>
