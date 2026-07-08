@@ -10,8 +10,8 @@
   const App = () => {
 
     const [data, setData] = useState({
-      //toggles the between black and white
-      'backgroundColor': false,
+      // toggles the between black and white
+      'backgroundColor': 'black',
       // selects the currently selected language
       'lang': 'GB',
       // a list for the <select> in controlpanel.js that supplies the available languages

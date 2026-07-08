@@ -8,21 +8,18 @@ const ControlPanel = ({onDataChange, data}) => {
 
     const handleChange = (event) => {
         onDataChange(event.target.checked ? {...data, backgroundColor: 'white'}: {...data, backgroundColor: 'black'});
+        console.log(data.backgroundColor)
     };
 
-    // Skal fikse bug hvor man skal trykke på et sprog 2 gange for at den opdaterer
     const handleLangChange = (event) => {
-        setLanguage(event.target.value)
-        console.log(language)
-        console.log(data.dayNames[language].days[0])
-        onDataChange({...data, lang: language})
+        onDataChange({...data, lang: event.target.value})
     }
 
     const [btnTrigger, setBtnTrigger] = useState(false)
-    const [language, setLanguage] = useState(data.lang)
 
     return (<>
-    <img onClick={() => {setBtnTrigger(!btnTrigger)}} src="https://www.svgrepo.com/show/532244/gear.svg" alt="Gear icon" style={{filter: btnTrigger ? null : "invert(100%)"}}/>
+    {/* mechanism for toggling color for the gear for the option menu*/}
+    <img onClick={() => {setBtnTrigger(!btnTrigger)}} src="https://www.svgrepo.com/show/532244/gear.svg" alt="Gear icon" style={{filter: data.backgroundColor === "black" ? "invert(100%)" : btnTrigger || data.backgroundColor === "white" ? null : "invert(100%)"}}/>
     {
         btnTrigger ? 
         <div className="controlPanel">
