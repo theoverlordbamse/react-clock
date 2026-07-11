@@ -10,15 +10,17 @@
   const App = () => {
 
     const [data, setData] = useState({
+      // toggles is the calendar is shown
+      'toggleCalendar': true,
+      // toggles if the clock is shown
+      'toggleClock': true,
       // toggles the between black and white
       'backgroundColor': 'black',
       // selects the currently selected language
       'lang': 'GB',
-      // a list for the <select> in controlpanel.js that supplies the available languages
-      'languages': ['DK', 'GB'],
 
-      "dayNames": {
-        // DA is a abbreviation for "definitive article". source: https://en.wikipedia.org/wiki/The
+      "langWords": {
+        // DA is short for "definitive article". source: https://en.wikipedia.org/wiki/The
         // variable names is named after the iso 3166 standard. reference: https://en.wikipedia.org/wiki/ISO_3166-2
     "DK": {
         "days": [
@@ -44,7 +46,14 @@
             "November",
             "December"
         ],
-        "DA": "Den"
+        "controlPanel": {
+          "toggleClock": "Klokke kontakt",
+          "toggleCalendar": "Kalender kontakt",
+          "changeLanguage": "Skift sprog",
+          "theme": "Tema"
+        },
+        "DA": "Den",
+        "OS": false
     },
     "GB": {
         "days": [
@@ -70,7 +79,16 @@
             "November",
             "December"
         ],
-        "DA": "The"
+        "controlPanel": {
+          "toggleClock": "Toggle clock",
+          "toggleCalendar": "Toggle calendar",
+          "changeLanguage": "change language",
+          "theme": "Theme"
+        },
+        "DA": "",
+        "OS": true
+        // might be implemented later if other languages needs this
+        //"OS": ["st", "nd", "th"]
     }
 }
     });
@@ -82,7 +100,7 @@
 
     return(
       <div className="app" style={{ display: 'flex', flexDirection: 'column', gap: '16px' , backgroundColor: data.backgroundColor, color: data.backgroundColor === 'white' ? "black" : "white"}}>
-        <ShowClock />
+        <ShowClock data={data}/>
         <ShowDate data={data} />
         <ControlPanel onDataChange={handleDataChange} data={data}/>
       </div>

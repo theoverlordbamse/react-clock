@@ -1,6 +1,6 @@
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 
-const ShowClock = (onDataChange, data) => {
+const ShowClock = ({ onDataChange, data }) => {
     const [time, setTime] = useState('00:00:00')
     const [colonState, setColonState] = useState(true)
 
@@ -11,7 +11,7 @@ const ShowClock = (onDataChange, data) => {
 
           const showTime = () => {
             const date = new Date();
-            return (<>
+            return (<>{data.toggleClock && (
                   <p>
                     {date.getHours() <= 9 ? '0' + date.getHours() : date.getHours()}
                     <span className={colonState ? 'colon' : 'colon-blank'}>
@@ -23,6 +23,7 @@ const ShowClock = (onDataChange, data) => {
                     </span>
                     {date.getSeconds() <= 9 ? '0' + date.getSeconds() : date.getSeconds()}
                   </p>
+         )}
               </>)
           }
 

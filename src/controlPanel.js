@@ -4,7 +4,7 @@ import './controlPanel.css'
 const ControlPanel = ({onDataChange, data}) => {
 
 
-    const keys = Object.keys(data.dayNames)
+    const keys = Object.keys(data.langWords)
 
     const handleChange = (event) => {
         onDataChange(event.target.checked ? {...data, backgroundColor: 'white'}: {...data, backgroundColor: 'black'});
@@ -13,6 +13,14 @@ const ControlPanel = ({onDataChange, data}) => {
 
     const handleLangChange = (event) => {
         onDataChange({...data, lang: event.target.value})
+    }
+
+    const handleClockToggle = (event) => {
+        onDataChange(event.target.checked ? {...data, toggleClock: false}: {...data, toggleClock: true})
+    }
+
+    const handleCalendarToggle = (event) => {
+        onDataChange(event.target.checked ? {...data, toggleCalendar: false}: {...data, toggleCalendar: true})
     }
 
     const [btnTrigger, setBtnTrigger] = useState(false)
@@ -25,19 +33,25 @@ const ControlPanel = ({onDataChange, data}) => {
         <div className="controlPanel">
             <div className="option toggleTheme">
                 <h5>
-                    Theme
+                    {data.langWords[data.lang].controlPanel.theme}
                 </h5>
                 <input type="checkbox" onChange={handleChange} />
             </div>
             <div className="option toggleClock"> 
-                <h5> {/* planlægger at implementere en kontakt til at vise klokken*/}
-                    toggle clock
+                <h5>
+                    {data.langWords[data.lang].controlPanel.toggleClock}
                 </h5>
-                <input type="checkbox" />
+                <input type="checkbox" onChange={handleClockToggle} />
+            </div>
+            <div className="option toggleCalendar">
+                <h5>
+                    {data.langWords[data.lang].controlPanel.toggleCalendar}
+                </h5>
+                <input type="checkbox" onChange={handleCalendarToggle} />
             </div>
             <div className="option language">
                 <h5>
-                    Change language
+                    {data.langWords[data.lang].controlPanel.changeLanguage}
                 </h5>
                 <select  value={data.lang} onChange={handleLangChange}>
                     {keys.map((item) => (<option key={item}>{item}</option>))}
