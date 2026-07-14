@@ -28,7 +28,7 @@ const ControlPanel = ({onDataChange, data}) => {
     return (<>
     {/* mechanism for toggling color for the gear for the option menu*/}
     <img onClick={() => {setBtnTrigger(!btnTrigger)}} src="https://www.svgrepo.com/show/532244/gear.svg" alt="Gear icon" style={{filter: data.backgroundColor === "black" ? "invert(100%)" : btnTrigger || data.backgroundColor === "white" ? null : "invert(100%)"}}/>
-    {
+    { // need to fix bug where when the controlpanel is hidden the toggles isnt toggled to their actual state
         btnTrigger ? 
         <div className="controlPanel">
             <div className="option toggleTheme">
@@ -41,13 +41,13 @@ const ControlPanel = ({onDataChange, data}) => {
                 <h5>
                     {data.langWords[data.lang].controlPanel.toggleClock}
                 </h5>
-                <input type="checkbox" onChange={handleClockToggle} />
+                <input type="checkbox" onChange={handleClockToggle} value={data.toggleClock} />
             </div>
             <div className="option toggleCalendar">
                 <h5>
                     {data.langWords[data.lang].controlPanel.toggleCalendar}
                 </h5>
-                <input type="checkbox" onChange={handleCalendarToggle} />
+                <input type="checkbox" onChange={handleCalendarToggle} value={data.toggleCalendar} />
             </div>
             <div className="option language">
                 <h5>

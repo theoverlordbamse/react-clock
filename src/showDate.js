@@ -3,36 +3,30 @@ import './showDate.css'
 const ShowDate = ({data}) => {
 
     const returnOs = (input) => {
+        // this is for parsing the input
+    const n = Math.abs(parseInt(input, 10));
+        // honestly dont know what this do
+    const lastNumber = n % 10;
 
-        let lastNumber
-
-        const inputString = input.toString()
-
-        const splittedDate = inputString.split("")
-
-        if (splittedDate.length < 1) {
-            lastNumber = parseInt(splittedDate[1])
-        }
-        else {
-            lastNumber = parseInt(splittedDate[0])
-        }
-        
-
-        if (lastNumber === 1) {
+        if (lastNumber === 1 ) {
             return "st"
         }
 
-        if (lastNumber === 2) {
+        if (lastNumber === 2 ) {
             return "nd"
         }
 
-        if (lastNumber === 3) {
+        if (lastNumber === 3 ) {
             return "rd"
+        }
+        else {
+            return "th"
         }
         
     }
 
     const date = new Date()
+
 
     return (
     <div className='date'>
